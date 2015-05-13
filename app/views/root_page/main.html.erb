@@ -1,51 +1,62 @@
-<div id="main">
-		<div class="container slogan">
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+	<div class="container">
+		<div id="main">
+			<div class="container slogan">
 
-		    <img height="200" width="200" src="assets/logo-iaau.png" alt="alatoo-logo">
-		    
-		    <h2>U-Life</h2>
-		    <hr>
-		    <h3>Become the part of something really big.</h3>	
+			    <img height="200" width="200" src="assets/logo-iaau.png" alt="alatoo-logo">
+
+			    <h2>U-Life</h2>
+			    <hr>
+			    <h3>Become the part of something really big.</h3>	
+			</div>
+			<div class="row">
+			    <div class="col-md-4">
+			    </div>
+			    <div class="col-md-4">
+				    <div class="login">
+						<h1>Login</h1>
+					    <form method="post">
+					    	<input type="text" name="u" placeholder="Username" required="required" />
+					        <input type="password" name="p" placeholder="Password" required="required" />
+					        <button type="submit" class="btn btn-primary btn-block btn-large">Login.</button>
+					        or<br>
+					    </form>
+					    <button data-toggle="modal" data-target="#register" type="button" class="btn btn-danger btn-block btn-large"><span style="cursor:pointer">Registration</span></button>
+					</div>
+			    </div>
+			    <div class="col-md-4"></div>
+			</div>
 		</div>
-		<div class="row">
-		    <div class="col-md-4">
-		    </div>
-		    <div class="col-md-4">
-			    <div class="login">
-					<h1>Login</h1>
-				    <form method="post">
-				    	<input type="text" name="u" placeholder="Username" required="required" />
-				        <input type="password" name="p" placeholder="Password" required="required" />
-				        <button type="submit" class="btn btn-primary btn-block btn-large">Login.</button>
-				        or<br>
-				    </form>
-				    <button data-toggle="modal" data-target="#register" type="button" class="btn btn-danger btn-block btn-large"><span style="cursor:pointer">Registration</span></button>
-				</div>
-		    </div>
-		    <div class="col-md-4"></div>
-		</div>
+
+
+
+
+		<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	      <div class="modal-dialog">
+	        <div class="modal-content">
+	            <form class="form-horizontal" action="" method="POST" id='registration_form' role="form">
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		                <h3 class="modal-title yellow" id="myModalLabel">Registration</h3>
+		            </div>
+		            <div class="modal-body">
+		                <label class="yellow" for="email">Email</label>
+		                <input required type="email" name="email" id="email" placeholder="please enter your university (iaau.edu.kg) email"><br>
+		                <div class="modal-footer">
+		                    <input type='submit' value='Register'  class="btn btn-primary" role="button"><br><br>
+		                    <button type="button" class="btn btn-block btn-default" data-dismiss="modal">Cancel</button>
+		                </div>
+		          	</div>
+	          	</form>
+	        </div>
+	      </div>
+	    </div>
 	</div>
-
-
-
-
-	<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="form-horizontal" action="" method="POST" id='registration_form' role="form">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	                <h3 class="modal-title yellow" id="myModalLabel">Registration</h3>
-	            </div>
-	            <div class="modal-body">
-	                <label class="yellow" for="email">Email</label>
-	                <input required type="email" name="email" id="email" placeholder="please enter your university (iaau.edu.kg) email"><br>
-	                <div class="modal-footer">
-	                    <input type='submit' value='Register'  class="btn btn-primary" role="button"><br><br>
-	                    <button type="button" class="btn btn-block btn-default" data-dismiss="modal">Cancel</button>
-	                </div>
-	          	</div>
-          	</form>
-        </div>
-      </div>
-    </div>
+</body>
