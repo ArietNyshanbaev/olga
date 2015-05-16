@@ -22,13 +22,16 @@
 			    <div class="col-md-4">
 				    <div class="login">
 				    <%= render 'shared/error_messages' %>
+				    <% flash.each do |message_type, message| %>
+			        	<div class="alert alert-<%= message_type %>"><%= message %></div>
+			        <% end %>
 						<h1>Login</h1>
-					    <form method="post">
-					    	<input type="email" name="email" placeholder="john.doe@iaa.edu.kg" required="required" />
-					        <input type="password" name="password" placeholder="Password" required="required" />
-					        <button type="submit" class="btn btn-primary btn-block btn-large">Login.</button>
+					    <%= form_for(:session, url: login_path) do |f| %>
+					    	<%= f.email_field(:email , placeholder: 'ex: ariet.nyshanbaev@iaau.edu.kg')%>
+					        <%= f.password_field(:password, placeholder: 'your passowrd') %>
+					        <%= f.submit "Log in", class: "btn btn-primary btn-block btn-large" %>
 					        or<br>
-					    </form>
+					    <% end %>
 					    <button data-toggle="modal" data-target="#register" type="button" class="btn btn-danger btn-block btn-large"><span style="cursor:pointer">Registration</span></button>
 					</div>
 			    </div>

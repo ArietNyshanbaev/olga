@@ -11,14 +11,17 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
 
-  	name = @user.email.split('@') 
-    name = name[0].split('.')
-    first_name = name[0].capitalize
-    second_name = name[1].capitalize
-    name = first_name + " " + second_name
-    @user.name = name
+  	
     
     if @user.save
+      name = @user.email.split('@') 
+	  name = name[0].split('.')
+	  first_name = name[0].capitalize
+	  second_name = name[1].capitalize
+	  name = first_name + " " + second_name
+	  @user.name = name
+	  @user.save
+	  log_in @user
       flash[:success] = "Yahooo!"
       redirect_to @user # Handle a successful save.
     else
