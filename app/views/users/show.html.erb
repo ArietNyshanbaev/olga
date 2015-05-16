@@ -1,0 +1,29 @@
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+	<div class="container">
+		<% flash.each do |message_type, message| %>
+        	<div class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
+		<%= @user.name %>, <%= @user.email %>
+		<%= debug(params) if Rails.env.development? %>
+
+		<% provide(:title, @user.name) %>
+		<div class="row">
+		  <aside class="col-md-4">
+		    <section class="user_info">
+		      <h1>
+		        <%= gravatar_for @user %>
+		        <%= @user.name %>
+		      </h1>
+		    </section>
+		  </aside>
+		</div>
+	</div>
+	
+</body>
