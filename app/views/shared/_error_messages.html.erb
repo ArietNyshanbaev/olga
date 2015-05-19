@@ -4,10 +4,11 @@
       The form contains <%= pluralize(@user.errors.count, "error") %>.<br>
       Please try to <a data-toggle="modal" data-target="#register"><span style="cursor:pointer">register</span></a> again with valid data.
     </div>
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
+    <h5>
+      <% @user.errors.full_messages.each do |msg| %>
+        <%= msg %><br>
+      <% end %>
+    </h5>
+    <br>
   </div>
 <% end %>
