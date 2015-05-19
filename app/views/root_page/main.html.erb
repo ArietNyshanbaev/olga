@@ -20,8 +20,8 @@
 			        <% end %>
 						<h1>Login</h1>
 					    <%= form_for(:session, url: login_path) do |f| %>
-					    	<%= f.email_field(:email , placeholder: 'ex: ariet.nyshanbaev@iaau.edu.kg')%>
-					        <%= f.password_field(:password, placeholder: 'your passowrd') %>
+					    	<%= f.email_field(:email, :required => true, placeholder: 'ex: ariet.nyshanbaev@iaau.edu.kg')%>
+					        <%= f.password_field(:password, :required => true, placeholder: 'your passowrd') %>
 					        <%= f.submit "Log in", class: "btn btn-primary btn-block btn-large" %>
 					        or<br>
 					    <% end %>
@@ -45,11 +45,11 @@
 		            <div class="modal-body">
 		            	<%= f.hidden_field :name, {:value => "nameholder"}%>
 		                <label class="yellow" for="email">Email</label>
-		                <%= f.email_field :email, class: 'form-control'%>
+		                <%= f.email_field :email, :required => true, class: 'form-control'%>
 		                <label class="yellow" for="email">Password</label>
-		                <%= f.password_field :password, class: 'form-control' %>
+		                <%= f.password_field :password, :required => true, class: 'form-control' %>
 		                <label class="yellow" for="email">Repeate password</label>
-		                <%= f.password_field :password_confirmation, class: 'form-control' %>
+		                <%= f.password_field :password_confirmation, :required => true, class: 'form-control' %>
 		                <div class="modal-footer">
 		                    <input type='submit' value='Register'  class="btn btn-primary" role="button"><br><br>
 		                    <button type="button" class="btn btn-block btn-default" data-dismiss="modal">Cancel</button>
