@@ -1,3 +1,179 @@
-// Place all the styles related to the Users controller here.
+// Place all the styles related to the RootPage controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+
+#error_explanation {
+  background-color: white;
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  background-color: white;
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
+
+aside {
+  section.user_info {
+    margin-top: 20px;
+  }
+  section {
+    padding: 10px 0;
+    margin-top: 20px;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    span {
+      display: block;
+      margin-bottom: 3px;
+      line-height: 1;
+    }
+    h1 {
+      font-size: 1.4em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      margin-top: 0px;
+    }
+  }
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+
+
+html,
+body {
+/*css for full size background image*/
+  background: image-url('iaau1.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+  height: 100%;
+  background-color: #060;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+}
+#main{
+    padding-bottom: 100px;
+}
+.ghost{
+  color: #fff;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+}
+.btn-lg {
+	font-size: 36px;
+}
+
+.slogan {
+	text-align: center;
+	padding-top: 30px;
+}
+
+.slogan h2, .slogan h3 {
+	color: white;
+	font-family: 'Arvo', courier, serif;
+	text-transform: uppercase;
+}
+
+.slogan h2 {
+	font-size: 30px;
+}
+
+.slogan h3 {
+	font-size: 26px;
+	font-weight: bolder;
+}
+
+.slogan p {
+	font-size: 21px;
+	font-weight: 300;
+}
+
+.slogan a {
+	color: #e74c3c;
+}
+
+.slogan hr {
+	border-top: 1px solid #e74c3d;
+	width: 160px;
+	margin-top: 15px;
+}
+.yellow{
+	color: #3C3C3C;
+}
+#email{
+	background: transparent;
+	color: black;
+}
+/* css of login form */
+.login h1 { color: #fff; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+
+input { 
+	width: 100%; 
+	margin-bottom: 10px; 
+	background: rgba(0,0,0,0.3);
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 13px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.3);
+	border-radius: 4px;
+	box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+	-webkit-transition: box-shadow .5s ease;
+	-moz-transition: box-shadow .5s ease;
+	-o-transition: box-shadow .5s ease;
+	-ms-transition: box-shadow .5s ease;
+	transition: box-shadow .5s ease;
+}
+input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+
+
+
+
