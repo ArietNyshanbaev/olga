@@ -1,0 +1,2 @@
+module HomeSecondHelper
+end

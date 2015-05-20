@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'home_s' => 'home_second#main'
+
   get 'home' => 'home#main'
 
   get    'login'   => 'sessions#new'
