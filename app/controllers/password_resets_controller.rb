@@ -2,6 +2,7 @@ class PasswordResetsController < ApplicationController
   before_action :get_user,   only: [:edit, :update]
   before_action :valid_user, only: [:edit, :update]
   before_action :check_expiration, only: [:edit, :update]
+  before_action :not_logged_in_user, only: [:create,:update,:edit,:new]
 
   def new
   end
@@ -58,5 +59,12 @@ class PasswordResetsController < ApplicationController
 		      redirect_to new_password_reset_url
 	      end
 	  end
+
+
+	  def not_logged_in_user
+	      unless !logged_in?
+	        redirect_to '/home_s'
+	      end
+      end
 
 end

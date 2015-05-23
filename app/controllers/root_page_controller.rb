@@ -1,5 +1,5 @@
 class RootPageController < ApplicationController
-  before_action :not_logged_in_user, only: [:main]
+  before_action :not_logged_in_user, only: [:main,:unsuccessful_registration]
   def main
   	@user = User.new
   end
@@ -13,5 +13,5 @@ class RootPageController < ApplicationController
       unless !logged_in?
         redirect_to '/home_s'
       end
-    end
+  end
 end
