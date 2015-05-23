@@ -1,20 +1,56 @@
 <% provide(:title, 'Reset password') %>
-<h1>Reset password</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
-      <%= render 'shared/error_messages' %>
 
-      <%= hidden_field_tag :email, @user.email %>
 
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+<body>
+  <div class="container">
+    <div id="main">
+      <div class="container slogan">
 
-      <%= f.submit "Update password", class: "btn btn-primary" %>
-    <% end %>
+          <img height="200" width="200" src="../assets/logo-iaau.png" alt="alatoo-logo">
+
+          <h2>U-Life</h2>
+          <hr>
+          <h3>Become the part of something really big.</h3> 
+      </div>
+      <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <div class="login">
+            <%= render 'shared/error_messages' %>
+            <% flash.each do |message_type, message| %>
+                <div class="alert alert-<%= message_type %>"><%= message %></div>
+              <% end %>
+            <h1>Reset password</h1>
+           <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+              <%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
+                
+
+                <%= hidden_field_tag :email, @user.email %>
+
+                <%= f.label :password %>
+                <%= f.password_field :password, class: 'form-control' %>
+
+                <%= f.label :password_confirmation, "Confirmation" %>
+                <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+                <%= f.submit "Update password", class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+          </div>
+          </div>
+          <div class="col-md-4"></div>
+      </div>
+    </div>
+
+    
+
+    
+
+      <%= debug(params) if Rails.env.development? %>
   </div>
-</div>
+</body>
