@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit,:show, :update]
+  before_action :logged_in_user, only: [:index, :edit, :new, :show, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
+  before_action :admin_user,     only: :destroy
+
 
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   def show
@@ -19,6 +21,7 @@ class UsersController < ApplicationController
 
     if @user.save
       UserMailer.account_activation(@user).deliver_now
+      @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       name = @user.email.split('@') 
   	  name = name[0].split('.')
@@ -29,7 +32,7 @@ class UsersController < ApplicationController
   	  @user.save
   	  log_in @user
       
-      redirect_to home_s # Handle a successful save.
+      redirect_to @user # Handle a successful save.
     else
       render "root_page/unsuccessful_registration"
     end
@@ -47,6 +50,12 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
   end
 
   private
@@ -67,6 +76,10 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       redirect_to(home_s) unless @user == current_user
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
     end
 
 end
