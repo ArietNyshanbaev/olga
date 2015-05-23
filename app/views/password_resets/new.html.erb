@@ -1,13 +1,70 @@
 <% provide(:title, "Forgot password") %>
-<h1>Forgot password</h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
+<body>
+	<div class="container">
+		<div id="main">
+			<div class="container slogan">
 
-      <%= f.submit "Submit", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-</div>
+			    <img height="200" width="200" src="assets/logo-iaau.png" alt="alatoo-logo">
+
+			    <h2>U-Life</h2>
+			    <hr>
+			    <h3>Become the part of something really big.</h3>	
+			</div>
+			<div class="row">
+			    <div class="col-md-4">
+			    </div>
+			    <div class="col-md-4">
+				    <div class="login">
+				    <%= render 'shared/error_messages_register' %>
+				    <% flash.each do |message_type, message| %>
+			        	<div class="alert alert-<%= message_type %>"><%= message %></div>
+			        <% end %>
+						<h1>Forgot password</h1>
+						<div class="row">
+						  <div class="col-md-6 col-md-offset-3">
+						    <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+						      <%= f.label :email %>
+						      <%= f.email_field :email, class: 'form-control' %>
+
+						      <%= f.submit "Submit", class: "btn btn-primary" %>
+						    <% end %>
+						  </div>
+						</div>
+					</div>
+			    </div>
+			    <div class="col-md-4"></div>
+			</div>
+		</div>
+
+		
+
+		<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	      <div class="modal-dialog">
+	        <div class="modal-content">
+	            <%= form_for(@user) do |f| %>
+		            <div class="modal-header">
+		                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		                <h3 class="modal-title yellow" id="myModalLabel">Registration</h3>
+		            </div>
+		            <div class="modal-body">
+		            	<%= f.hidden_field :name, {:value => "nameholder"}%>
+		                <label class="yellow" for="email">Email</label>
+		                <%= f.email_field :email, :required => true, class: 'form-control'%>
+		                <label class="yellow" for="email">Password</label>
+		                <%= f.password_field :password, :required => true, class: 'form-control' %>
+		                <label class="yellow" for="email">Repeate password</label>
+		                <%= f.password_field :password_confirmation, :required => true, class: 'form-control' %>
+		                <div class="modal-footer">
+		                    <input type='submit' value='Register'  class="btn btn-primary" role="button"><br><br>
+		                    <button type="button" class="btn btn-block btn-default" data-dismiss="modal">Cancel</button>
+		                </div>
+		          	</div>
+	          	<% end %>
+	        </div>
+	      </div>
+	    </div>
+
+	    <%= debug(params) if Rails.env.development? %>
+	</div>
+</body>
