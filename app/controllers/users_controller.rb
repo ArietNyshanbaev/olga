@@ -30,9 +30,9 @@ class UsersController < ApplicationController
   	  name = first_name + " " + second_name
   	  @user.name = name
   	  @user.save
-  	  log_in @user
+  	  
       
-      redirect_to @user # Handle a successful save.
+      redirect_to root_url # Handle a successful save.
     else
       render "root_page/unsuccessful_registration"
     end
