@@ -2,10 +2,10 @@
 <!-- JS
 ================================================== -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="../../assets/bootstrap.js"></script>
-<script src="../../assets/jquery.prettyPhoto.js"></script>
-<script src="../../assets/jquery.flexslider.js"></script>
-<script src="../../assets/jquery.custom.js"></script>
+<script src="../assets/bootstrap.js"></script>
+<script src="../assets/jquery.prettyPhoto.js"></script>
+<script src="../assets/jquery.flexslider.js"></script>
+<script src="../assets/jquery.custom.js"></script>
 
 
     <!-- Color Bars (above header)-->
@@ -80,35 +80,41 @@
       </div><!-- End Header -->
       <div class="color-bar-2 color-bg"></div>
       <br><br><br><br><br>
+      
+    
+
+      
+    <div class="container">
+    <div class="span3">
+      
+    </div>
+
+    <div class="span5" style="text-align: center">
+        <h1>Change Password</h1>
+        <%= render 'shared/error_messages' %>
      
-    
-
-    <% flash.each do |message_type, message| %>
-          <div style="text-align: center " class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
-    
-    <div style="text-align: center">
-      <div class="span3"></div>
-      <div class="span6">
-        <h2>Profile</h2>
+        <div class="text-center">
+            <section class="">
+              <h1>
+                <%= gravatar_for @user %>
+                <%= @user.name %>
+              </h1>
+              <h5><%= @user.email %></h5>
+            </section>
+        </div>
         <br>
-        <br>
-          
-          <% provide(:title, @user.name) %>
-          <div class="text-center">
-              <section class="">
-                <h1>
-                  <%= gravatar_for @user %>
-                  <%= @user.name %>
-                  <h5><%= @user.email %></h5>
-                </h1>
-              </section>
+        <hr>
+        <%= form_for(@user) do |f| %>
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control' %>
 
-              <br>
-              <p class="btn btn-default btn-lg"><a href="http://gravatar.com/emails" target="_blank">change avatar</a></p>
-              <p class="btn btn-default btn-lg"><%= link_to "Change password", edit_user_path(current_user) %></p>
-          </div>
-      </div>
+          <%= f.label :password_confirmation, "Confirmation" %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+          <br>
+          <%= f.submit "Save changes", class: "btn btn-primary btn-lg" %>
+        <% end %>
+
+    </div>
     </div>
   </div>
 

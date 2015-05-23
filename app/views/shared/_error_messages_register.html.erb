@@ -2,20 +2,16 @@
   <div id="error_explanation">
     <div class="alert alert-danger">
       The form contains <%= pluralize(@user.errors.count, "error") %>.<br>
-      Please try to submit a form again with valid data.
-
+      Please try to <a data-toggle="modal" data-target="#register"><span style="cursor:pointer">register</span></a> again with valid data.
       <ul>
-      
         <% @user.errors.full_messages.each do |msg| %>
-          <li>
-            <%= msg %><br>
-          </li>
+          <li><%= msg %><br></li>
         <% end %>
-      
-    </ul>
+      </ul>
     </div>
-    
-    
+    <h5>
+      
+    </h5>
     <br>
   </div>
 <% end %>
