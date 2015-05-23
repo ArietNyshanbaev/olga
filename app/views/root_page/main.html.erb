@@ -22,6 +22,7 @@
 					    <%= form_for(:session, url: login_path) do |f| %>
 					    	<%= f.email_field(:email, :required => true, placeholder: 'ex: ariet.nyshanbaev@iaau.edu.kg')%>
 					        <%= f.password_field(:password, :required => true, placeholder: 'your passowrd') %>
+					        <p>	<%= link_to "forgot password", new_password_reset_path %></p>
 					        <%= f.submit "Log in", class: "btn btn-primary btn-block btn-large" %>
 					        or<br>
 					    <% end %>
