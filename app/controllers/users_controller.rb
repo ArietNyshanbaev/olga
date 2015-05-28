@@ -40,6 +40,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def update

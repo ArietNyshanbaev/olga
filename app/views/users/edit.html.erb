@@ -91,7 +91,7 @@
 
     <div class="span5" style="text-align: center">
         <h1>Change Password</h1>
-        <%= render 'shared/error_messages' %>
+        <%= render 'shared/error_messages' , object: f.object%>
      
         <div class="text-center">
             <section class="">
@@ -105,6 +105,7 @@
         <br>
         <hr>
         <%= form_for(@user) do |f| %>
+           
           <%= f.label :password %>
           <%= f.password_field :password, class: 'form-control' %>
 

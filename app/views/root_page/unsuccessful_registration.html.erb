@@ -16,7 +16,7 @@
 			    </div>
 			    <div class="span4" style="text-align: center ">
 				    <div class="login">
-				    <%= render 'shared/error_messages_register' %>
+				    <%= render 'shared/error_messages_register' ,object: f.object%>
 				    <% flash.each do |message_type, message| %>
 			        	<div class="alert alert-<%= message_type %>"><%= message %></div>
 			        <% end %>
