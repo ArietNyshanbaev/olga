@@ -4,9 +4,13 @@ Rails.application.routes.draw do
 
   get 'password_resets/edit'
 
-  get 'home_s' => 'home_second#main'
+  get 'home' => 'home_second#main'
 
-  get 'home' => 'home#main'
+  get 'home_s' => 'home#main'
+
+  get 'gallery' => 'home_second#gallery'
+
+  get 'blog' => 'home_second#blog'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'

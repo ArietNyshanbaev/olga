@@ -105,10 +105,13 @@
               </section>
 
               <br>
+            <% if @user.id == @current_user.id %>
               <p class="btn btn-default btn-lg"><a href="http://gravatar.com/emails" target="_blank">change avatar</a></p>
               <p class="btn btn-default btn-lg"><%= link_to "Change password", edit_user_path(current_user) %></p>
+            <%end%>
           </div>
           <div class="col-md-8">
+
             <% if @user.microposts.any? %>
               <h3>Microposts (<%= @user.microposts.count %>)</h3>
               <ol class="microposts">
@@ -117,23 +120,11 @@
               <%= will_paginate @microposts %>
             <% end %>
           </div>
-          <% if logged_in? %>
-              <div class="row">
-                <aside class="col-md-4">
-                  <section class="user_info">
-                    <%= render 'shared/user_info' %>
-                  </section>
-                  <section class="micropost_form">
-                    <%= render 'shared/micropost_form' %>
-                  </section>
-                </aside>
-              </div>
-            <% else %>
-            <% end %>
-            <div class="col-md-8">
-            <h3>Micropost Feed</h3>
-              <%= render 'shared/feed' %>
-            </div>
+
+          <section class="micropost_form">
+            <%= render 'shared/micropost_form' %>
+          </section>
+             
       </div>
     </div>
   </div>

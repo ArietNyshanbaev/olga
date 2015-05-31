@@ -9,8 +9,9 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
+    #@feed_items = current_user.feed.paginate(page: params[:page])
     @micropost = current_user.microposts.build if logged_in?
-    @feed_items = current_user.feed.paginate(page: params[:page])
   end
 
   def new
@@ -41,7 +42,6 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
   end
 
   def update
@@ -62,6 +62,10 @@ class UsersController < ApplicationController
 
   private
 
+    def this_user
+      @user = User.find(params[:id])
+      return @user 
+    end
     def user_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation)

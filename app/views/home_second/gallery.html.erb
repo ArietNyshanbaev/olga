@@ -1,49 +1,18 @@
-<body class="home">
+<body>
 <!-- JS
 ================================================== -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="assets/jquery.easing.1.3.js"></script>
 <script src="assets/bootstrap.js"></script>
 <script src="assets/jquery.prettyPhoto.js"></script>
-<script src="assets/jquery.flexslider.js"></script>
+<script src="assets/jquery.quicksand.js"></script>
 <script src="assets/jquery.custom.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {
-
-    $("#btn-blog-next").click(function () {
-      $('#blogCarousel').carousel('next')
-    });
-     $("#btn-blog-prev").click(function () {
-      $('#blogCarousel').carousel('prev')
-    });
-
-     $("#btn-client-next").click(function () {
-      $('#clientCarousel').carousel('next')
-    });
-     $("#btn-client-prev").click(function () {
-      $('#clientCarousel').carousel('prev')
-    });
-    
-});
-
- $(window).load(function(){
-
-    $('.flexslider').flexslider({
-        animation: "slide",
-        slideshow: true,
-        start: function(slider){
-          $('body').removeClass('loading');
-        }
-    });  
-});
-
-</script>
 
 
-    <!-- Color Bars (above header)-->
 	<div class="color-bar-1"></div>
     <div class="color-bar-2 color-bg"></div>
     
-    <div class="container">
+    <div class="container main-container">
     
       <div class="row header"><!-- Begin Header -->
       
@@ -58,13 +27,12 @@ $(document).ready(function () {
         ================================================== -->
         <div class="span7 navigation">
             <div class="navbar hidden-phone">
-            
             <ul class="nav">
             <li>
                 <%= link_to "Home", home_path %>
             </li>
      
-             <li>
+             <li class="active">
                 <%= link_to "Gallery", gallery_path %>
              </li>
              <li>
@@ -76,49 +44,29 @@ $(document).ready(function () {
                 <%= link_to "Log out", logout_path, method: "delete" %>
               </li>
             </ul>
-           
-            </div>
         </div>
-        
+        </div>
+
       </div><!-- End Header -->
      
-    <div class="row headline"><!-- Begin Headline -->
-    
-     	<!-- Slider Carousel
-        ================================================== -->
-        <div class="span8">
-            <div class="flexslider">
-              <ul class="slides">
-                <li><a href="gallery-single.htm"><img src="assets/gallery/slider-img-1.jpg" alt="slider" /></a></li>
-                <li><a href="gallery-single.htm"><img src="assets/gallery/slider-img-1.jpg" alt="slider" /></a></li>
-                <li><a href="gallery-single.htm"><img src="assets/gallery/slider-img-1.jpg" alt="slider" /></a></li>
-                <li><a href="gallery-single.htm"><img src="assets/gallery/slider-img-1.jpg" alt="slider" /></a></li>
-                <li><a href="gallery-single.htm"><img src="assets/gallery/slider-img-1.jpg" alt="slider" /></a></li>
-              </ul>
-            </div>
-        </div>
-        
-        <!-- Headline Text
-        ================================================== -->
-        <div class="span4">
-        	<h3>Welcome to Piccolo. <br />
-            A Big Theme in a Small Package.</h3>
-            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium vulputate magna sit amet blandit.</p>
-            <p>Cras rutrum, massa non blandit convallis, est lacus gravida enim, eu fermentum ligula orci et tortor. In sit amet nisl ac leo pulvinar molestie. Morbi blandit ultricies ultrices.</p>
-            <a href="#"><i class="icon-plus-sign"></i>Read More</a> 
-        </div>
-    </div><!-- End Headline -->
-    
-    <div class="row gallery-row"><!-- Begin Gallery Row --> 
-      
-    	<div class="span12">
+    <!-- Page Content
+    ================================================== --> 
+    <div class="row">
 
-    	
-        <!-- Gallery Thumbnails
-        ================================================== -->
+        <!-- Gallery Items
+        ================================================== --> 
+        <div class="span12 gallery">
 
-            <div class="row clearfix no-margin">
-            <ul class="gallery-post-grid holder">
+            <ul id="filterOptions" class="gallery-cats clearfix">
+                <li class="active"><a href="#" class="all">All</a></li> 
+                <li><a href="#" class="illustration">Illustration</a></li>
+                <li><a href="#" class="design">Design</a></li>
+                <li><a href="#" class="video">Video</a></li>
+                <li><a href="#" class="web">Web</a></li>
+            </ul>
+
+            <div class="row clearfix">
+                <ul class="gallery-post-grid holder">
 
                     <!-- Gallery Item 1 -->
                     <li  class="span3 gallery-item" data-id="id-1" data-type="illustration">
@@ -149,7 +97,7 @@ $(document).ready(function () {
                         <span class="gallery-hover-4col hidden-phone hidden-tablet">
                             <span class="gallery-icons">
                                 <a href="assets/gallery/gallery-img-1-full.jpg" class="item-zoom-link lightbox" title="Custom Illustration" data-rel="prettyPhoto"></a>
-                                <a href="#" class="item-details-link"></a>
+                                <a href="gallery-single.htm" class="item-details-link"></a>
                             </span>
                         </span>
                         <a href="gallery-single.htm"><img src="assets/gallery/gallery-img-1-4col.jpg" alt="Gallery"></a>
@@ -263,72 +211,30 @@ $(document).ready(function () {
                         <a href="gallery-single.htm"><img src="assets/gallery/gallery-img-1-4col.jpg" alt="Gallery"></a>
                         <span class="project-details"><a href="gallery-single.htm">Branding Design</a>For an international add campaign.</span>
                     </li>
+
                 </ul>
-                </div>
             </div>
- 
-    </div><!-- End Gallery Row -->
-    
-    <div class="row"><!-- Begin Bottom Section -->
-    
-    	<!-- Blog Preview
-        ================================================== -->
-    	<div class="span12">
 
-            <h5 class="title-bg">From the Blog 
-                <small>All the latest news</small>
-                <button id="btn-blog-next" class="btn btn-inverse btn-mini" type="button">&raquo;</button>
-                <button id="btn-blog-prev" class="btn btn-inverse btn-mini" type="button">&laquo;</button>
-            </h5>
-
-        <div id="blogCarousel" class="carousel slide ">
-
-            <!-- Carousel items -->
-            <div class="carousel-inner">
-
-                <div class="active item">
-                    <a href="blog-single.htm"><img src="assets/gallery/blog-med-img-1.jpg" alt="" class="align-left blog-thumb-preview" /></a>
-                    <div class="post-info clearfix">
-                        <h4><a href="blog-single.htm">A subject that is </a></h4>
-                        <ul class="blog-details-preview">
-                            <li><i class="icon-calendar"></i><strong>Posted on:</strong> Sept 4, 2015<li>
-                            <li><i class="icon-user"></i><strong>Posted by:</strong> <a href="#" title="Link">Admin</a><li>
-                            <li><i class="icon-comment"></i><strong>Comments:</strong> <a href="#" title="Link">12</a><li>
-                            <li><i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a>, <a href="#">illustration</a>
-                        </ul>
-                    </div>
-                    <p class="blog-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Vestibulum lectus tellus, aliquet et iaculis sed, volutpat vel erat. <a href="#">Read more</a><p>
-                </div>
-                <% @microposts.each do |micro| %>
-
-                    <div class="item">
-                    <a href="blog-single.htm"><img src="assets/gallery/blog-med-img-1.jpg" alt="" class="align-left blog-thumb-preview" /></a>
-                    <div class="post-info clearfix">
-                        <h4><a href="blog-single.htm">A subject that is here1</a></h4>
-                        <ul class="blog-details-preview">
-                            <li><i class="icon-calendar"></i><strong>Posted on:</strong> Sept 4, 2015<li>
-                            <li><i class="icon-user"></i><strong>Posted by:</strong> <a href="#" title="Link">Admin</a><li>
-                            <li><i class="icon-comment"></i><strong>Comments:</strong> <a href="#" title="Link">12</a><li>
-                            <li><i class="icon-tags"></i> <a href="#">photoshop</a>, <a href="#">tutorials</a>, <a href="#">illustration</a>
-                        </ul>
-                    </div>
-                    <p class="blog-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum felis fermentum ipsum molestie sed porttitor ligula rutrum. Vestibulum lectus tellus, aliquet et iaculis sed, volutpat vel erat. <a href="#">Read more</a><p>
-                    </div>
-
-                 <% end %>
-
-              
+            <!-- Pagination -->
+            <div class="pagination">
+                <ul>
+                <li class="active"><a href="#">Prev</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">Next</a></li>
+                </ul>
             </div>
-            </div> 	
-        </div>
-        
-    </div><!-- End Bottom Section -->
+
+        </div><!-- End gallery list-->
+
+    </div><!-- End container row -->
     
     </div> <!-- End Container -->
 
     <!-- Footer Area
         ================================================== -->
-
 	<div class="footer-container"><!-- Begin Footer -->
     	<div class="container">
         	<div class="row footer-row">
@@ -399,9 +305,10 @@ $(document).ready(function () {
             </div><!-- End Sub Footer -->
 
         </div>
-    </div><!-- End Footer --> 
-    
-    <!-- Scroll to Top -->  
-    <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>    
-</body>
+    </div><!-- End Footer -->
 
+    <!-- Scroll to Top -->  
+    <div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+    
+</body>
+</html>
