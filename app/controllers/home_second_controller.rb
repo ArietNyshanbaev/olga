@@ -1,12 +1,12 @@
 class HomeSecondController < ApplicationController
   def main
-  	@microposts = Micropost.last(3)
-  	@micropost = Micropost.last
+  	@microposts = Micropost.first(3)
+  	@micropost = Micropost.first
 
   end
 
   def blog
-  	
+  	@microposts = Micropost.all.paginate(page: params[:page])
   end
 
   def gallery

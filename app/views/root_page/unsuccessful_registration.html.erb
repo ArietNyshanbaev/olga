@@ -16,11 +16,12 @@
 			    </div>
 			    <div class="span4" style="text-align: center ">
 				    <div class="login">
-				    <%= render 'shared/error_messages_register' ,object: f.object%>
+				    
 				    <% flash.each do |message_type, message| %>
 			        	<div class="alert alert-<%= message_type %>"><%= message %></div>
 			        <% end %>
 				    <%= form_for(@user) do |f| %>
+				    <%= render 'shared/error_messages_register' ,object: f.object%>
 		            <div class="modal-header">
 		                <h3 class="modal-title yellow" id="myModalLabel">Registration</h3>
 		            </div>

@@ -25,46 +25,18 @@
         
         <!-- Main Navigation
         ================================================== -->
-        <div class="span7 navigation">
+         <div class="span7 navigation">
             <div class="navbar hidden-phone">
-            
             <ul class="nav">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="index.htm">Home <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="index.htm">Full Page</a></li>
-                    <li><a href="index-gallery.htm">Gallery Only</a></li>
-                    <li><a href="index-slider.htm">Slider Only</a></li>
-                </ul>
+            <li>
+                <%= link_to "Home", home_path %>
             </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="page-full-width.htm">Pages <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="page-full-width.htm">Full Width</a></li>
-                    <li><a href="page-right-sidebar.htm">Right Sidebar</a></li>
-                    <li><a href="page-left-sidebar.htm">Left Sidebar</a></li>
-                    <li><a href="page-double-sidebar.htm">Double Sidebar</a></li>
-                </ul>
-            </li>
-             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="gallery-4col.htm">Gallery <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="gallery-3col.htm">Gallery 3 Column</a></li>
-                    <li><a href="gallery-4col.htm">Gallery 4 Column</a></li>
-                    <li><a href="gallery-6col.htm">Gallery 6 Column</a></li>
-                    <li><a href="gallery-4col-circle.htm">Gallery 4 Round</a></li>
-                    <li><a href="gallery-single.htm">Gallery Single</a></li>
-                </ul>
+     
+             <li>
+                <%= link_to "Gallery", gallery_path %>
              </li>
-             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="blog-style1.htm">Blog <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="blog-style1.htm">Blog Style 1</a></li>
-                    <li><a href="blog-style2.htm">Blog Style 2</a></li>
-                    <li><a href="blog-style3.htm">Blog Style 3</a></li>
-                    <li><a href="blog-style4.htm">Blog Style 4</a></li>
-                    <li><a href="blog-single.htm">Blog Single</a></li>
-                </ul>
+             <li>
+                <%= link_to "Blog", blog_path %>
              </li>
              <li><%= link_to "Users", users_path %></li>
              <li class="active"><%= link_to "Profile", current_user %></li>
@@ -72,9 +44,7 @@
                 <%= link_to "Log out", logout_path, method: "delete" %>
               </li>
             </ul>
-           
-            </div>
-
+        </div>
         </div>
         
       </div><!-- End Header -->
@@ -110,24 +80,50 @@
               <p class="btn btn-default btn-lg"><%= link_to "Change password", edit_user_path(current_user) %></p>
             <%end%>
           </div>
-          <div class="col-md-8">
-
-            <% if @user.microposts.any? %>
-              <h3>Microposts (<%= @user.microposts.count %>)</h3>
-              <ol class="microposts">
-                <%= render @microposts %>
-              </ol>
-              <%= will_paginate @microposts %>
-            <% end %>
-          </div>
-
-          <section class="micropost_form">
-            <%= render 'shared/micropost_form' %>
-          </section>
-             
       </div>
     </div>
+    
   </div>
+  <br><br><br>
+  <div class="color-bar-2 color-bg"></div>
+  <br>
+  <div class="span6 blog">
+      <% if @user.microposts.any? %>
+      <h3 style="text-align: center ">Microposts (<%= @user.microposts.count %>)</h3>
+             <% @user.microposts.each do |micro| %>
+             <article class="clearfix">
+                
+                <%if micro.picture?%>
+                  <%= link_to image_tag(micro.picture.url,size:("260x220"), class: "align-left"), micro %>
+                <% else %>
+                <img src="../assets/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left">
+                <% end %>
+
+                <h4 class="title-bg"><%= link_to micro.title, micro %></h4>
+                    <div class="post-summary-footer">
+                        <ul class="post-data-3">
+                            <li><i class="icon-calendar"></i><%= micro.created_at %></li>
+                            <li><% if micro.user.id == @current_user.id %>
+                            <%= link_to "delete", micro, method: :delete,
+                                                             data: { confirm: "You sure?" } %>
+                            <% end %>
+                            </li>
+                            <li>
+                              <p>Posted <%= time_ago_in_words(micro.created_at) %> ago.</p>
+                            </li>
+                            <li>
+                              <%=micro.id%>
+                            </li>
+                        </ul>
+                    </div>
+            </article>
+             <% end %>
+             <%= will_paginate @microposts %>
+            <% end %>
+    </div>
+    <div class="span6 blog">
+      here must be photos
+    </div>
 
   <br><br><br><br><br>
 

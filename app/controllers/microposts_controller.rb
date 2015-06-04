@@ -6,10 +6,11 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.build(micropost_params)
     if @micropost.save
       flash[:success] = "Micropost created!"
-      redirect_to current_user
+      redirect_to :back
     else
       @feed_items = []
-      render user
+      @user = current_user
+      render blog_post_path
     end
   end
 
@@ -19,10 +20,14 @@ class MicropostsController < ApplicationController
     redirect_to request.referrer || root_url
   end
 
+  def show
+    @post = Micropost.find(params[:id])
+  end
+
   private
 
     def micropost_params
-      params.require(:micropost).permit(:content, :picture)
+      params.require(:micropost).permit(:content, :picture, :title, :description)
     end
 
     def correct_user

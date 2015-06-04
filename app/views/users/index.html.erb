@@ -65,7 +65,7 @@
 	                                <%= link_to "", user ,class: 'item-details-link'%>
 	                            </span>
 	                        </span>
-	                        <a href="gallery-single.htm"><%= gravatar_for user %></a>
+	                        <%= gravatar_for user , "140x100" %>
 	                        <span class="project-details"><%= link_to user.name, user %></span>
                     	</li>
 					  <% end %>

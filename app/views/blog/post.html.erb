@@ -3,8 +3,6 @@
 ================================================== -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="assets/bootstrap.js"></script>
-<script src="assets/jquery.prettyPhoto.js"></script>
-<script src="assets/jquery.flexslider.js"></script>
 <script src="assets/jquery.custom.js"></script>
 <div class="color-bar-1"></div>
     <div class="color-bar-2 color-bg"></div>
@@ -47,44 +45,24 @@
       </div><!-- End Header -->
      
     <!-- Blog Content
+
     ================================================== --> 
+
+    <% flash.each do |message_type, message| %>
+          <div style="text-align: center " class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
     <div class="row">
 
         <div class="span2 sidebar">
         </div>
         <!-- Blog Posts
         ================================================== --> 
-        <div class="span8 blog">
-        <br><br><br>
-            <a href="<%=post_blog_path%>"> <button class="btn btn-default btn-large btn-block" > post a blog</button></a>
+        <div class="span8">
 
-            <br><br><br>
+        		<h4 style="text-align: center ">Post a blog</h4>
+        		<br>
+	            <%= render 'shared/micropost_form' %>
 
-            <% if @microposts.any? %>
-             <% @microposts.each do |micro| %>
-             <article class="clearfix">
-                
-                <%if micro.picture?%>
-                <%= link_to image_tag(micro.picture.url,size:("260x220"), class: "align-left"), micro %>
-                <% else %>
-                <img src="assets/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left">
-                <% end %>
-               
-                <h4 class="title-bg"><%= link_to micro.title, micro %></h4>
-                    <p><%= micro.description %></p>
-                    
-                    <div class="post-summary-footer">
-                        <ul class="post-data-3">
-                            <li><i class="icon-calendar"></i><%= micro.created_at %></li>
-                            <li><i class="icon-user"></i> <%= link_to micro.user.name, micro.user %></li>
-                        </ul>
-                    </div>
-            </article>
-             <% end %>
-             <%= will_paginate @microposts %>
-            <% end %>
-            
-            
         </div>
 
         <!-- Blog Sidebar
