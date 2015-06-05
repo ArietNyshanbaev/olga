@@ -10,6 +10,6 @@ class HomeSecondController < ApplicationController
   end
 
   def gallery
-  	
+  	@pictures = Picture.all.paginate(page: params[:page])
   end
 end

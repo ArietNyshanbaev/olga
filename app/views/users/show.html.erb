@@ -122,7 +122,38 @@
             <% end %>
     </div>
     <div class="span6 blog">
-      here must be photos
+      <% if @user.pictures.any? %>
+      <h3 style="text-align: center ">Photos (<%= @user.pictures.count %>)</h3>
+             <% @user.pictures.each do |photo| %>
+             <article class="clearfix">
+                
+                <%if photo.photo?%>
+                  <%= link_to image_tag(photo.photo.url,size:("260x220"), class: "align-left"), photo %>
+                <% else %>
+                <img src="../assets/gallery/gallery-img-1-4col.jpg" alt="Post Thumb" class="align-left">
+                <% end %>
+
+                <h4 class="title-bg"><%= link_to photo.title, photo %></h4>
+                    <div class="post-summary-footer">
+                        <ul class="post-data-3">
+                            <li><i class="icon-calendar"></i><%= photo.created_at %></li>
+                            <li><% if photo.user.id == @current_user.id %>
+                            <%= link_to "delete", photo, method: :delete,
+                                                             data: { confirm: "You sure?" } %>
+                            <% end %>
+                            </li>
+                            <li>
+                              <p>Posted <%= time_ago_in_words(photo.created_at) %> ago.</p>
+                            </li>
+                            <li>
+                              <%=photo.id%>
+                            </li>
+                        </ul>
+                    </div>
+            </article>
+             <% end %>
+             <%= will_paginate @pictures %>
+            <% end %>
     </div>
 
   <br><br><br><br><br>
