@@ -5,7 +5,7 @@ class PicturesController < ApplicationController
   	def create
     @picture = current_user.pictures.build(picture_params)
     if @picture.save
-      flash[:success] = "Picture is successfully uploaded!"
+      flash[:success] = "Picture is successfully added!"
       redirect_to gallery_path
     else
       @feed_items = []

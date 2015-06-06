@@ -303,23 +303,24 @@ $(document).ready(function () {
 
             <!-- Carousel items -->
             <div class="carousel-inner">
-
+            <% @micropost.each do |micro| %>
                 <div class="item active">
-                <%if @micropost.picture?%>
-                    <%= link_to image_tag(@micropost.picture.url,size:("370x220"), class: "align-left"), @micropost %>
+                <%if micro.picture?%>
+                    <%= link_to image_tag(micro.picture.url,size:("370x220"), class: "align-left"), micro %>
                 <% else %>
                     <img src="assets/gallery/blog-med-img-1.jpg" alt="" class="align-left blog-thumb-preview" />
                 <% end %>
                     <div class="post-info clearfix">
-                        <h4><%= link_to @micropost.title, @micropost %></h4>
+                        <h4><%= link_to micro.title, micro %></h4>
                         <ul class="blog-details-preview">
-                            <li><i class="icon-calendar"></i><strong>Posted on:</strong> <%=@micropost.created_at%><li>
-                            <li><i class="icon-user"></i><strong>Posted by:</strong> <a href="#" title="Link"><%=@micropost.user.name%></a><li>
+                            <li><i class="icon-calendar"></i><strong>Posted on:</strong> <%=micro.created_at%><li>
+                            <li><i class="icon-user"></i><strong>Posted by:</strong> <a href="#" title="Link"><%=micro.user.name%></a><li>
                             <li><i class="icon-comment"></i><strong>Comments:</strong> <a href="#" title="Link">12</a><li>
                         </ul>
                     </div>
-                    <p class="blog-summary"><%=@micropost.description%><p>
+                    <p class="blog-summary"><%=micro.description%><p>
                 </div>
+            <% end %>
 
                 <% @microposts.each do |micro| %>
 
