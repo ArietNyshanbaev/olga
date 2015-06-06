@@ -11,7 +11,7 @@ class RootPageController < ApplicationController
 
   def not_logged_in_user
       unless !logged_in?
-        redirect_to '/home_s'
+        redirect_to '/home'
       end
   end
 end
