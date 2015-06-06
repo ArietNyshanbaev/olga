@@ -57,6 +57,9 @@
         <!-- Gallery Items
         ================================================== --> 
         <div class="span12 gallery">
+        <% flash.each do |message_type, message| %>
+          <div style="text-align: center " class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
             <a href="<%=post_photo_path%>"> <button class="btn btn-default btn-large btn-block" > Add a photo</button></a>
             <br><br><br>
             <div class="row clearfix">

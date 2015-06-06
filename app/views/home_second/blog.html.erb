@@ -57,6 +57,9 @@
         ================================================== --> 
         <div class="span8 blog">
         <br><br><br>
+        <% flash.each do |message_type, message| %>
+            <div style="text-align: center " class="alert alert-<%= message_type %>"><%= message %></div>
+        <% end %>
             <a href="<%=post_blog_path%>"> <button class="btn btn-default btn-large btn-block" > post a blog</button></a>
 
             <br><br><br>

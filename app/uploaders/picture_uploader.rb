@@ -6,7 +6,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [1080, 880, gravity='Center']
 
   if Rails.env.production?
-    storage :fog
+    storage :file
   else
     storage :file
   end
