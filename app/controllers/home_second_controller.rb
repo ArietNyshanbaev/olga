@@ -1,7 +1,7 @@
 class HomeSecondController < ApplicationController
   def main
   	@microposts = Micropost.first(3)
-  	@micropost = Micropost.first
+  	@micropost = Micropost.first(1)
     @pictures = Picture.first(12)
   end
 
