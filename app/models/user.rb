@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
 	before_create :create_activation_digest
 
 	validates :name, presence: true, length: { maximum: 100 }
-	#VALID_EMAIL_REGEX = [a-z]+\z/i+\.[a-z]+\z/i+"@iaau.edu.kg"
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	#VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	VALID_EMAIL_REGEX = /\A[\w+\-.]+@iaau.edu.kg/
 	validates :email, presence: true, length: { maximum: 150 },
 	format: { with: VALID_EMAIL_REGEX },
 	uniqueness: { case_sensitive: false }
