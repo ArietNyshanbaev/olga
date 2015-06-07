@@ -1,7 +1,7 @@
 <%= form_for(@picture, html: { multipart: true }) do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
   <div class="field">
-    <%= f.text_field :title, placeholder: "Title of the photo"%>
+    <%= f.text_field :title,:required => true, placeholder: "Title of the photo"%>
   </div>
   <div class="field">
     <%= f.text_area :description, placeholder: "Write description in couple words for this photo", rows: "5"%>
@@ -10,7 +10,7 @@
   <br>
   <span class="picture">
   <label for="photo">Add a Photo:
-    <%= f.file_field :photo, accept: 'image/jpeg,image/gif,image/png' %>
+    <%= f.file_field :photo,:required => true, accept: 'image/jpeg,image/gif,image/png' %>
   </label>
   </span>
   <br><br>

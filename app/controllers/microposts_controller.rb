@@ -22,6 +22,7 @@ class MicropostsController < ApplicationController
 
   def show
     @post = Micropost.find(params[:id])
+    @comentb = current_user.comentbs.build
   end
 
   private

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get 'post_blog' => 'blog#post'
   get 'post_photo' => 'photo#post'
+  get 'just_in' => 'microposts#show'
 
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
@@ -30,7 +31,8 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]  
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :microposts,          only: [:create, :show, :destroy]
-  resources :pictures,              only: [:create, :show, :destroy]
+  resources :pictures,            only: [:create, :show, :destroy]
+  resources :comentbs,            only: [:create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
