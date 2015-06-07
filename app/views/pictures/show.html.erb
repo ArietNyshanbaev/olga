@@ -68,65 +68,33 @@
                         <li><h6>Date:</h6><%= @picture.created_at %></li>
                          
                         <li><h6>Author:</h6> <%= link_to @picture.user.name, @picture.user %></li>
+
+                        <li><h6>Comments:</h6><a href="#commi"><%= @picture.comentps.count %> coments</a></li>
                     </ul>
 
-                    <a href="#" class="pull-right"><i class="icon-arrow-left"></i>Back to Gallery</a>
+                    <a href="<%=gallery_path%>" class="pull-right"><i class="icon-arrow-left"></i>Back to Gallery</a>
                 </div>
                 
             </div>
             <div class="row">
-                <section class="comments">
-                <h4 class="title-bg"><a name="comments"></a>5 Comments so far</h4>
-                <ul>
+                <section class="comments" id='commi'>
+                <h4 class="title-bg"><a name="comments"></a><%= @picture.comentps.count%> Comments so far</h4>
+               <ul>
+                    <% if @picture.comentps.any? %>
+                    <% @picture.comentps.each do |coment| %>
                     <li>
-                        <img src="../assets/user-avatar.jpg" alt="Image" />
-                        <span class="comment-name">John Doe</span>
-                        <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                        <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                        <!-- Reply -->
-                        <ul>
-                            <li>
-                                <img src="../assets/user-avatar.jpg" alt="Image" />
-                                <span class="comment-name">Jason Doe</span>
-                                <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                                <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                                </li>
-                             <li>
-                                <img src="../assets/user-avatar.jpg" alt="Image" />
-                                <span class="comment-name">Jason Doe</span>
-                                <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                                <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                                </li>
-                         </ul>
+                    <span class="comment-name"><%= link_to coment.user.name, coment.user %></span>
+                    <br>
+                    <span class="comment-date"><%=coment.created_at%>:</span>
+                    <div class="comment-content"><%=coment.content%></div>
                     </li>
-                    <li>
-                        <img src="../assets/user-avatar.jpg" alt="Image" />
-                        <span class="comment-name">John Doe</span>
-                        <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                        <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                    </li>
-                    <li>
-                        <img src="../assets/user-avatar.jpg" alt="Image" />
-                        <span class="comment-name">John Doe</span>
-                        <span class="comment-date">March 15, 2015 | <a href="#">Reply</a></span>
-                        <div class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam venenatis, ligula quis sagittis euismod, odio ante molestie tortor, eget ullamcorper lacus nunc a ligula. Donec est lacus, aliquet in interdum id, rutrum ac tellus. Ut rutrum, justo et lobortis commodo, est metus ornare tortor, vitae luctus turpis leo sed magna. In leo dolor, suscipit non mattis in.</div>
-                    </li>
-                    
+                    <% end %>
+                <% end %>
                </ul>
             
                 <!-- Comment Form -->
-                <div class="comment-form-container">
-                    <h6>Leave a Comment</h6>
-                    <form action="#" id="comment-form">
-                        <textarea class="span6"></textarea>
-                        <div class="row">
-                            <div class="span2">
-                                <input type="submit" class="btn btn-inverse" value="Post My Comment">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-        </section>
+                <%= render 'shared/comentp_form'%>
+        </section><!-- Close comments section-->
         </div>
 
         </div><!-- End gallery-single-->

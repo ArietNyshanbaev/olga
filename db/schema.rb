@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150606162442) do
+ActiveRecord::Schema.define(version: 20150607004936) do
 
   create_table "comentbs", force: :cascade do |t|
     t.text     "content"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20150606162442) do
   add_index "comentbs", ["micropost_id"], name: "index_comentbs_on_micropost_id"
   add_index "comentbs", ["user_id", "micropost_id", "created_at"], name: "index_comentbs_on_user_id_and_micropost_id_and_created_at"
   add_index "comentbs", ["user_id"], name: "index_comentbs_on_user_id"
+
+  create_table "comentps", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "picture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "comentps", ["picture_id"], name: "index_comentps_on_picture_id"
+  add_index "comentps", ["user_id", "picture_id", "created_at"], name: "index_comentps_on_user_id_and_picture_id_and_created_at"
+  add_index "comentps", ["user_id"], name: "index_comentps_on_user_id"
 
   create_table "microposts", force: :cascade do |t|
     t.text     "content"

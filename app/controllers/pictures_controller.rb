@@ -22,6 +22,7 @@ class PicturesController < ApplicationController
 
   def show
     @picture = Picture.find(params[:id])
+    @comentp = current_user.comentps.build
   end
 
   private

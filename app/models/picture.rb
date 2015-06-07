@@ -1,4 +1,5 @@
 class Picture < ActiveRecord::Base
+  has_many :comentps, dependent: :destroy
   belongs_to :user
   default_scope -> { order(created_at: :desc) }
   mount_uploader :photo, PictureUploader
