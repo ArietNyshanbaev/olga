@@ -42,13 +42,16 @@
              <li><%= link_to "Users", users_path %></li>
              <li><%= link_to "Profile", current_user %></li>
              <li>
-                <%= link_to "Log out", logout_path, method: "delete" %>
-              </li>
+                <a><span data-toggle="modal" data-target="#signout"><span style="cursor:pointer">Log out</span></span></a>
+             </li>
             </ul>
         </div>
         </div>
 
       </div><!-- End Header -->
+
+      <!-- Exit  model page -->
+    <%= render 'shared/modal_logout'%>
      
     <!-- Page Content
     ================================================== --> 
