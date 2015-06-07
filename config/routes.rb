@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'blog' => 'home_second#blog'
 
   get 'post_blog' => 'blog#post'
+
   get 'post_photo' => 'photo#post'
 
   get    'login'   => 'sessions#new'

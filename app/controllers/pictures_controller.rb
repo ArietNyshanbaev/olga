@@ -26,7 +26,13 @@ class PicturesController < ApplicationController
   end
 
   private
-
+  def logged_in_user
+      unless logged_in?
+        store_location
+        flash[:danger] = "Please log in."
+        redirect_to root_url
+      end
+    end
     def picture_params
       params.require(:picture).permit(:title, :description, :photo)
     end

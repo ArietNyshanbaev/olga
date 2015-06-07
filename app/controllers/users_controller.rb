@@ -28,13 +28,16 @@ class UsersController < ApplicationController
       flash[:info] = "Please check your email to activate your account."
       name = @user.email.split('@') 
   	  name = name[0].split('.')
-  	  first_name = name[0].capitalize
-  	  second_name = name[1].capitalize
-  	  name = first_name + " " + second_name
+      if  name.size == 2
+        first_name = name[0].capitalize
+        second_name = name[1].capitalize
+        name = first_name + " " + second_name
+      else 
+        name = name[0].capitalize
+      end
+  	  
   	  @user.name = name
   	  @user.save
-  	  
-      
       redirect_to root_url # Handle a successful save.
     else
       render "root_page/unsuccessful_registration"
@@ -47,8 +50,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    
     if @user.update_attributes(user_params)
-      flash[:info] = "Ur password is successfuly changed"
+      flash[:info] = "Ur profile is successfuly modified"
       redirect_to @user
     else
       render 'edit'
@@ -69,7 +73,7 @@ class UsersController < ApplicationController
     end
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :picture)
     end
 
     def logged_in_user

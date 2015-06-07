@@ -62,23 +62,27 @@
       <div class="span3"></div>
       <div class="span6">
         <h2>Profile</h2>
-        <br>
-        <br>
+      
           
           <% provide(:title, @user.name) %>
           <div class="text-center">
               <section class="">
                 <h1>
-                  <%= gravatar_for @user %>
-                  <%= @user.name %>
+                  <% if @user.picture? %>
+                    <%= image_tag(@user.picture.url,size:("400x400"))%>
+                  <% else %>
+                    <img src="../assets/gallery/no-photo.jpg" height="400" width="400" alt="user-avatar">
+                  <% end %>
+                  <br>
+                  
+                  <h3><%= @user.name %></h3>
                   <h5><%= @user.email %></h5>
                 </h1>
               </section>
 
               <br>
             <% if @user.id == @current_user.id %>
-              <p class="btn btn-default btn-lg"><a href="http://gravatar.com/emails" target="_blank">change avatar</a></p>
-              <p class="btn btn-default btn-lg"><%= link_to "Change password", edit_user_path(current_user) %></p>
+              <p class="btn btn-default btn-lg"><%= link_to "Edit profile", edit_user_path(current_user) %></p>
             <%end%>
           </div>
       </div>

@@ -26,46 +26,19 @@
         
         <!-- Main Navigation
         ================================================== -->
+        
         <div class="span7 navigation">
             <div class="navbar hidden-phone">
-            
             <ul class="nav">
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="index.htm">Home <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="index.htm">Full Page</a></li>
-                    <li><a href="index-gallery.htm">Gallery Only</a></li>
-                    <li><a href="index-slider.htm">Slider Only</a></li>
-                </ul>
+            <li>
+                <%= link_to "Home", home_path %>
             </li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="page-full-width.htm">Pages <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="page-full-width.htm">Full Width</a></li>
-                    <li><a href="page-right-sidebar.htm">Right Sidebar</a></li>
-                    <li><a href="page-left-sidebar.htm">Left Sidebar</a></li>
-                    <li><a href="page-double-sidebar.htm">Double Sidebar</a></li>
-                </ul>
-            </li>
-             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="gallery-4col.htm">Gallery <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="gallery-3col.htm">Gallery 3 Column</a></li>
-                    <li><a href="gallery-4col.htm">Gallery 4 Column</a></li>
-                    <li><a href="gallery-6col.htm">Gallery 6 Column</a></li>
-                    <li><a href="gallery-4col-circle.htm">Gallery 4 Round</a></li>
-                    <li><a href="gallery-single.htm">Gallery Single</a></li>
-                </ul>
+     
+             <li>
+                <%= link_to "Gallery", gallery_path %>
              </li>
-             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="blog-style1.htm">Blog <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                    <li><a href="blog-style1.htm">Blog Style 1</a></li>
-                    <li><a href="blog-style2.htm">Blog Style 2</a></li>
-                    <li><a href="blog-style3.htm">Blog Style 3</a></li>
-                    <li><a href="blog-style4.htm">Blog Style 4</a></li>
-                    <li><a href="blog-single.htm">Blog Single</a></li>
-                </ul>
+             <li>
+                <%= link_to "Blog", blog_path %>
              </li>
              <li><%= link_to "Users", users_path %></li>
              <li class="active"><%= link_to "Profile", current_user %></li>
@@ -73,9 +46,7 @@
                 <%= link_to "Log out", logout_path, method: "delete" %>
               </li>
             </ul>
-           
-            </div>
-
+        </div>
         </div>
         
       </div><!-- End Header -->
@@ -96,10 +67,15 @@
      
         <div class="text-center">
             <section class="">
-              <h1>
-                <%= gravatar_for @user %>
+              <h3>
+              <% if @user.picture? %>
+                <%= image_tag(@user.picture.url,size:("400x400"))%>
+              <% else %>
+                <img src="../assets/gallery/no-photo.jpg" height="400" width="400" alt="user-avatar">
+              <% end %>
+                <br>
                 <%= @user.name %>
-              </h1>
+              </h3>
               <h5><%= @user.email %></h5>
             </section>
         </div>
@@ -107,21 +83,35 @@
         <hr>
         <%= form_for(@user) do |f| %>
         <%= render 'shared/error_messages' , object: f.object%>
-           
+          <span class="picture">
+          <label for="picture">Add a Picture:
+            <%= f.file_field :picture,required:true, accept: 'image/jpeg,image/gif,image/png' %>
+          </label>
+          </span>
           <%= f.label :password %>
-          <%= f.password_field :password, class: 'form-control' %>
+          <%= f.password_field :password,required:true, class: 'form-control' %>
 
           <%= f.label :password_confirmation, "Confirmation" %>
-          <%= f.password_field :password_confirmation, class: 'form-control' %>
+          <%= f.password_field :password_confirmation,required:true, class: 'form-control' %>
           <br>
           <%= f.submit "Save changes", class: "btn btn-primary btn-lg" %>
+           <button class="btn btn-default btn-lg"><%= link_to "Cancel", current_user %></button>
         <% end %>
+
 
     </div>
     </div>
   </div>
 
   <br><br><br><br><br>
+  <script type="text/javascript">
+  $('#micropost_picture').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>
 
 <%= render 'shared/footer'%>
     
